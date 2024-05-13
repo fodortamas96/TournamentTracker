@@ -6,7 +6,7 @@ process.on('unhandledRejection', (reason, promise) => {
     process.exit(1);
 })
 
-const client = await connectToDb("tt.db")
+const client = await connectToDb("tt.db");
 const app = createApp(client);
 
 
