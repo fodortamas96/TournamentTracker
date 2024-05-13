@@ -1,0 +1,17 @@
+{
+  "name": "tournamenttracker",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Tennis tournament tracking application for umpires",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
