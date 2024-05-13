@@ -7,6 +7,10 @@ export function connectToDb(filepath) {
         loadTournaments() {
             const statement = db.prepare("SELECT * FROM tournaments")
             return statement.all();
-        } 
+        },
+        saveTournament(tournament) {
+            const statement = db.prepare("INSERT INTO tournaments (event_type, category, city, country, surface) VALUES (?, ?, ?, ?, ?)");
+            statement.run(tournament.event_type, tournament.category, tournament.city, tournament.country, tournament.surface);
+        }
     }
 }
