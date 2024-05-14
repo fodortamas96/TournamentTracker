@@ -2,6 +2,7 @@ import Database from "better-sqlite3";
 
 export function connectToDb(filepath) {
     const db = new Database(filepath);
+    //db.pragma('journal_mode = WAL');
 
     return {
         loadTournaments() {
