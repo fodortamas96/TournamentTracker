@@ -1,6 +1,6 @@
 import express from "express";
 
-export function createTournamentsRouter({ loadTournaments, saveTournament, deleteTournament }) {
+export function createTournamentsRouter({ loadTournaments, saveTournament, deleteTournament, updateTournament }) {
     const tournamentsRouter = express.Router();
 
     tournamentsRouter.get('', (req, res, next) => {
@@ -20,9 +20,18 @@ export function createTournamentsRouter({ loadTournaments, saveTournament, delet
         }
     });
 
-    tournamentsRouter.delete('', (req, res, next) => {
+    tournamentsRouter.delete('/:name', (req, res, next) => {
         try {
-            deleteTournament({
+            deleteTournament(req.params.name);
+            res.sendStatus(204);
+        } catch (err) {
+            next(err);
+        }
+    });
+
+    tournamentsRouter.put('', (req, res, next) => {
+        try {
+            updateTournament({
                 event_type: req.query.event_type,
                 category: req.query.category,
                 city: req.query.city
@@ -31,7 +40,7 @@ export function createTournamentsRouter({ loadTournaments, saveTournament, delet
         } catch (err) {
             next(err);
         }
-    });
+    })
 
     return tournamentsRouter;
 }
