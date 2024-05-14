@@ -2,7 +2,7 @@ import Database from "better-sqlite3";
 
 export function connectToDb(filepath) {
     const db = new Database(filepath);
-    //db.pragma('journal_mode = WAL');
+    db.pragma('journal_mode = WAL');
 
     return {
         loadTournaments() {
@@ -10,8 +10,8 @@ export function connectToDb(filepath) {
             return statement.all();
         },
         saveTournament(tournament) {
-            const statement = db.prepare("INSERT INTO tournaments (event_type, category, city, country, surface) VALUES (?, ?, ?, ?, ?)");
-            statement.run(tournament.event_type, tournament.category, tournament.city, tournament.country, tournament.surface);
+            const statement = db.prepare("INSERT INTO tournaments (event_type, category, city, country, surface, name) VALUES (?, ?, ?, ?, ?, ?)");
+            statement.run(tournament.event_type, tournament.category, tournament.city, tournament.country, tournament.surface, tournament.name);
         },
         deleteTournament(name) {
             const statement = db.prepare("DELETE FROM tournaments WHERE name = ?");
