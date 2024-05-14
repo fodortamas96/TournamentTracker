@@ -29,13 +29,9 @@ export function createTournamentsRouter({ loadTournaments, saveTournament, delet
         }
     });
 
-    tournamentsRouter.put('', (req, res, next) => {
+    tournamentsRouter.put('/:name', (req, res, next) => {
         try {
-            updateTournament({
-                event_type: req.query.event_type,
-                category: req.query.category,
-                city: req.query.city
-            });
+            updateTournament( req.body, req.params.name);
             res.sendStatus(204);
         } catch (err) {
             next(err);
