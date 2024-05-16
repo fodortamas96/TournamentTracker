@@ -52,5 +52,14 @@ export function createUsersRouter({ addUser, getUser }) {
         }
     });
 
+    usersRouter.post('', (req, res, next) => {
+        try {
+            addUser(req.body);
+            res.sendStatus(201);
+        } catch (err) {
+            next(err);
+        }
+    })
+
     return usersRouter;
 }
