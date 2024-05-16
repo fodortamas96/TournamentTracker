@@ -40,3 +40,17 @@ export function createTournamentsRouter({ loadTournaments, saveTournament, delet
 
     return tournamentsRouter;
 }
+
+export function createUsersRouter({ addUser, getUser }) {
+    const usersRouter = express.Router();
+
+    usersRouter.get('/:username', (req, res, next) => {
+        try {
+            res.json(getUser(req.params.username));
+        } catch (err) {
+            next(err);
+        }
+    });
+
+    return usersRouter;
+}

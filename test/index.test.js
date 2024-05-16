@@ -9,7 +9,6 @@ test("GET on /tournaments returns with 200", async () => {
     });
 
     const response = await request(app).get("/tournaments");
-    console.log(response);
     strictEqual(response.statusCode, 200);
 });
 

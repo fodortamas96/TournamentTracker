@@ -31,6 +31,14 @@ export function connectToDb(filepath) {
             const statement = db.prepare("UPDATE tournaments " +
                 "SET  " + subSetParams + " WHERE name = ?");
             statement.run(...updateValues, name);
+        },
+        addUser(user) {
+            const statement = db.prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)");
+            statement.run(user.username, user.password, user.email);
+        },
+        getUser(username) {
+            const statement = db.prepare("SELECT * FROM users WHERE username = ?");
+            return statement.get(username)
         }
     }
 }
