@@ -1,4 +1,5 @@
 import express from "express";
+import bcrypt from "bcryptjs";
 
 export function createTournamentsRouter({ loadTournaments, saveTournament, deleteTournament, updateTournament }) {
     const tournamentsRouter = express.Router();
@@ -54,7 +55,9 @@ export function createUsersRouter({ addUser, getUser }) {
 
     usersRouter.post('', (req, res, next) => {
         try {
-            addUser(req.body);
+            const hashedPassword = bcrypt.hashSync(req.body.password);
+            console.log(hashedPassword)
+            addUser({ username: req.body.username, password: hashedPassword, email: req.body.email });
             res.sendStatus(201);
         } catch (err) {
             next(err);
